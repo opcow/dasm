@@ -1,5 +1,3 @@
-$Id: README 327 2014-02-09 13:06:55Z adavie $
-
 ===================
 DASM 2.20.11 README
 ===================
@@ -57,6 +55,7 @@ Compiling and Installing
     A bin/ directory containing DASM executables will be created as part
     of this process. You can also give the command
 
+
         make test
 
     to run all the test cases that come with the distribution. Note that
@@ -70,6 +69,14 @@ Compiling and Installing
     by adding the bin/ directory to your path, or by copying executables
     to another directory in your path. For include files in the machines/
     directory you currently have to use DASM's -I command line option.
+
+    The command
+
+        make mingw
+
+    will build windows compatible binaries using i686-w64-mingw32-g++.
+    Install mingw-w64 if you want to build this target. Otherwise this
+    is the same as make with no arguments.
 
     NOTE: Several compiler warnings will be displayed during the build
           process. We are confident that you can ignore these warnings.
