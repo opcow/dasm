@@ -1329,6 +1329,7 @@ void
 generate(void)
 {
     long seekpos;
+    int segend;
     static unsigned long org;
     int i;
     
@@ -1395,31 +1396,14 @@ generate(void)
                 break;
                 
             case FORMAT_RAS:
-                
-                if (org != Csegment->org)
-                {
-                    org = Csegment->org;
-                    seekpos = ftell(FI_temp);
-                    fseek(FI_temp, Seekback, 0);
-                    putc((Seglen & 0xFF), FI_temp);
-                    putc(((Seglen >> 8) & 0xFF), FI_temp);
-                    fseek(FI_temp, seekpos, 0);
-                    putc((org & 0xFF), FI_temp);
-                    putc(((org >> 8) & 0xFF), FI_temp);
-                    Seekback = ftell(FI_temp);
-                    Seglen = 0;
-                    putc(0, FI_temp);
-                    putc(0, FI_temp);
-                }
-                
-                fwrite(Gen, Glen, 1, FI_temp);
-                Seglen += Glen;
-                break;
-
             case FORMAT_ARA:
+                
                 if (org != Csegment->org)
                 {
-                    int segend = org - 1;
+                    if (F_format == FORMAT_ARA)
+                        segend = org - 1;
+                    else
+                        segend = Seglen;
                     org = Csegment->org;
                     seekpos = ftell(FI_temp);
                     fseek(FI_temp, Seekback, 0);
@@ -1433,10 +1417,11 @@ generate(void)
                     putc(0, FI_temp);
                     putc(0, FI_temp);
                 }
+                
                 fwrite(Gen, Glen, 1, FI_temp);
                 Seglen += Glen;
                 break;
-            
+
             }
             org += Glen;
         }
