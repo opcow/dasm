@@ -33,9 +33,7 @@
 
 #include "asm.h"
 
-SVNTAG("$Id: main.c 327 2014-02-09 13:06:55Z adavie $");
-
-static const char dasm_id[] = "DASM 2.20.11 20140304";
+static const char dasm_id[] = "DASM 2.20.11a 20180128";
 
 #define MAXLINE 1024
 #define ISEGNAME    "INITIAL CODE SEGMENT"
