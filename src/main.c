@@ -405,7 +405,7 @@ fail:
     puts("");
     puts("Usage: dasm sourcefile [options]");
     puts("");
-    puts("-f#      output format 1-3 (default 1)");
+    puts("-f#      output format 1-4 (default 1)");
     puts("-oname   output file name (else a.out)");
     puts("-lname   list file name (else none generated)");
     puts("-Lname   list file, containing all passes");

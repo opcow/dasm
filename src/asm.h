@@ -71,7 +71,7 @@ enum FORMAT
 {
     FORMAT_DEFAULT = 1,
     FORMAT_RAS,
-    FORMAT_ATA,
+    FORMAT_ARA,
     FORMAT_RAW,
     FORMAT_MAX
 };

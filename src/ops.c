@@ -1356,7 +1356,7 @@ generate(void)
                     putc((org & 0xFF), FI_temp);
                     putc(((org >> 8) & 0xFF), FI_temp);
                     
-                    if ( F_format == FORMAT_RAS || F_format == FORMAT_ATA)
+                    if ( F_format == FORMAT_RAS || F_format == FORMAT_ARA)
                     {
                         Seekback = ftell(FI_temp);
                         Seglen = 0;
@@ -1416,7 +1416,7 @@ generate(void)
                 Seglen += Glen;
                 break;
 
-            case FORMAT_ATA:
+            case FORMAT_ARA:
                 if (org != Csegment->org)
                 {
                     int segend = org - 1;
@@ -1452,14 +1452,14 @@ void closegenerate(void)
 {
     unsigned long org;
     org = Csegment->org;
-    // if ( F_format == FORMAT_ATA )
+    // if ( F_format == FORMAT_ARA )
     //     Seglen = org + Seglen - 5;
 
     if (!Redo)
     {
-        if ( F_format == FORMAT_RAS || F_format == FORMAT_ATA)
+        if ( F_format == FORMAT_RAS || F_format == FORMAT_ARA)
         {
-            if (F_format == FORMAT_ATA)
+            if (F_format == FORMAT_ARA)
                 Seglen = org - 1;
             fseek(FI_temp, Seekback, 0);
             putc((Seglen & 0xFF), FI_temp);

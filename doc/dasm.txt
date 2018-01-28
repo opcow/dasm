@@ -152,7 +152,14 @@ FORMAT OPTIONS:
 	allowed).  The next hunk begins after the previous hunk's data,
 	until the end of the file.
 
-    3  RAW (Raw)
+    2  ARA (Atari Random Access Segment)
+
+	Atari 8-bit computer format. Similar to format 2, but inserts
+	0xFF,0xFF file header. Each hunk consists of a 2 byte origin
+	(LSB,MSB), 2 byte end address (LSB,MSB), and the number of data
+	bytes to fill that space.
+
+    4  RAW (Raw)
 
 	The output file contains data only (format #1 without the 2 byte
 	header).  Restrictions are the same as for format #1.
