@@ -51,7 +51,7 @@ GWARN= -ansi -std=c99 -pedantic -Wall \
 
 #CC= gcc
 ifeq ($(MAKECMDGOALS),mingw)
-	CC=i686-w64-mingw32-g++ -fpermissive
+	CC=i686-w64-mingw32-g++
 endif
 
 OBJS= main.o ops.o globals.o exp.o symbols.o \

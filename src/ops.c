@@ -53,7 +53,7 @@ int gethexdig(int c);
 *  An opcode modifies the SEGMENT flags in the following ways:
 */
 
-void addmsg(char *message);
+void addmsg(const char *message);
 
 void v_processor(char *str, MNEMONIC *dummy)
 {
@@ -593,7 +593,7 @@ v_dc(char *str, MNEMONIC *mne)
             return;
         }
         if (tmp->flags & SYM_MACRO) {
-            macstr = (void *)tmp->string;
+            macstr = (char *)tmp->string;
         }
         else
         {
@@ -609,7 +609,7 @@ v_dc(char *str, MNEMONIC *mne)
             Redo_why |= REASON_DC_NOT_RESOVED;
         }
         if (sym->flags & SYM_STRING) {
-            unsigned char *ptr = (void *)sym->string;
+            unsigned char *ptr = (unsigned char *)sym->string;
             while ((value = *ptr) != 0) {
                 if (vmode) {
                     setspecial(value, 0);

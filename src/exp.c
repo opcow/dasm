@@ -473,7 +473,7 @@ SYMBOL *eval(const char *str, int wantmode)
                 cur->value = Argstack[Argi];
                 cur->flags = Argflags[Argi];
                 
-                if ((cur->string = (void *)Argstring[Argi]) != NULL)
+                if ((cur->string = (char *)Argstring[Argi]) != NULL)
                 {
                     cur->flags |= SYM_STRING;
                     if (Xdebug)
@@ -529,7 +529,7 @@ SYMBOL *eval(const char *str, int wantmode)
         --Argi;
         cur->value = Argstack[Argi];
         cur->flags = Argflags[Argi];
-        if ((cur->string = (void *)Argstring[Argi]) != NULL)
+        if ((cur->string = (char *)Argstring[Argi]) != NULL)
         {
             cur->flags |= SYM_STRING;
             if (Xdebug)

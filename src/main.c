@@ -58,7 +58,7 @@ void clearrefs(void);
 static unsigned int hash1(const char *str);
 static void outlistfile(const char *);
 
-void addmsg(char *message); // add to message buffer (FXQ)
+void addmsg(const char *message); // add to message buffer (FXQ)
 
 // buffers to supress errors and messages until last pass - FXQ
 static char errorbuffer[1000000]; // per-pass error buffer
@@ -124,6 +124,8 @@ int     pass;
 
 unsigned char     F_ListAllPasses = 0;
 
+char emptyStr[] = ""; 
+char zeroStr[] = "0"; 
 
 
 
@@ -433,7 +435,7 @@ fail:
             {
             /* TODO: need to improve option parsing and errors for it */
             case 'E':
-                F_errorformat = atoi(str);
+                F_errorformat = (errorformat_t)atoi(str);
                 if (F_errorformat < ERRORFORMAT_DEFAULT
                    || F_errorformat >= ERRORFORMAT_MAX )
                 {
@@ -442,7 +444,7 @@ fail:
                 break;
 
             case 'T':
-                F_sortmode = atoi(str);
+                F_sortmode = (sortmode_t)atoi(str);
                 if (F_sortmode < SORTMODE_DEFAULT
                    || F_sortmode >= SORTMODE_MAX )
                 {
@@ -468,7 +470,7 @@ fail:
                 }
                 else
                 {
-                    str = "0";
+                    str = zeroStr;
                 }
                 Av[0] = av[i]+2;
                 
@@ -592,7 +594,7 @@ nextpass:
             const char *comment;
             if ( pIncfile->flags & INF_MACRO) {
                 if ( pIncfile->strlist == NULL) {
-                    Av[0] = "";
+                    Av[0] = emptyStr;
                     v_mexit(NULL, NULL);
                     continue;
                 }
@@ -732,7 +734,7 @@ nextpass:
     return nError;
 }
 
-void addmsg(char *message) // add to message buffer (FXQ)
+void addmsg(const char *message) // add to message buffer (FXQ)
 {
   strcat(msgbuffer,message);
 }
@@ -1486,7 +1488,7 @@ char *zmalloc(int bytes)
 
 char *ckmalloc(int bytes)
 {
-    char *ptr = malloc(bytes);
+    char *ptr = (char *)malloc(bytes);
     if (ptr)
     {
         return ptr;
@@ -1513,7 +1515,7 @@ char *permalloc(int bytes)
     bytes = (bytes + sizeof(union align)-1) & ~(sizeof(union align)-1);
     if (bytes > left)
     {
-        if ((buf = malloc(ALLOCSIZE)) == NULL)
+        if ((buf = (char *)malloc(ALLOCSIZE)) == NULL)
             panic("unable to malloc");
         memset(buf, 0, ALLOCSIZE);
         left = ALLOCSIZE;
