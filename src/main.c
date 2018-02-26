@@ -582,10 +582,10 @@ nextpass:
             return ERROR_FILE_ERROR;
         }
     }
-//    if (F_format == FORMAT_ATA) {
+    if (F_format == FORMAT_ARA) {
         putc(0xff, FI_temp);
         putc(0xff, FI_temp);
-//    }
+    }
     pushinclude(av[1]);
     
     while ( pIncfile )
