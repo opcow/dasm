@@ -102,7 +102,7 @@ COMMAND LINE:
 
 	dasm sourcefile [options]
 
-	options:    -f#     output format 1-3 (default 1, see below)
+	options:    -f#     output format 1-4 (default 1, see below)
 		    -oname  output file name (else a.out)
 		    -lname  list file name (else none generated) 
 		    -Lname  list file name, containing all passes
